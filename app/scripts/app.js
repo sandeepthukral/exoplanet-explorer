@@ -32,9 +32,10 @@ Instructions:
     /*
     Use the Fetch API to GET a URL.
     Return the fetch.
-
+    
     Your code goes here!
      */
+    return fetch(url);
   }
 
   /**
@@ -48,6 +49,20 @@ Instructions:
 
     Your code goes here!
      */
+    return new Promise((resolve, reject) => {
+      get(url)
+        .then((res) => {
+          if (res.status == 200){
+            resolve(res.json());
+          } else {
+            reject(res.error());
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+          reject(Error('Network Error'));
+        })
+    });
   }
 
   window.addEventListener('WebComponentsReady', function() {
@@ -58,6 +73,10 @@ Instructions:
 
     Your code goes here too!
      */
-    // getJSON('../data/earth-like-results.json')
+    getJSON('../data/earth-like-results.json')
+      .then((res) => addSearchHeader(res.query))
+      .catch((e) => {
+        console.log(e);
+        addSearchHeader('Unknown');});
   });
 })(document);
