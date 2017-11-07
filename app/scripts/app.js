@@ -62,10 +62,15 @@ Instructions:
     /*
     Refactor this code!
      */
+    var sequence = Promise.resolve();
     getJSON('../data/earth-like-results.json')
     .then(function(response) {
       response.results.forEach(function(url) {
-        getJSON(url).then(createPlanetThumb);
+        sequence = sequence
+                    .then( () => {return getJSON(url);})
+                    .catch(console.log)
+                    .then(createPlanetThumb)
+                    .catch(console.log);
       });
     });
   });
