@@ -58,6 +58,10 @@ proper order even if all the requests haven't finished.
     /*
     Your code goes here!
      */
-    // getJSON('../data/earth-like-results.json')
+    getJSON('../data/earth-like-results.json')
+      .then( (response) => {
+        addSearchHeader(response.query);
+        response.results.map( result => getJSON(result).then(createPlanetThumb) );
+      });
   });
 })(document);
