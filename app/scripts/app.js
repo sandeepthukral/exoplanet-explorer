@@ -52,28 +52,8 @@ Instructions:
       return response.json();
     });
   }
-
-  // window.addEventListener('WebComponentsReady', function() {
-  //   home = document.querySelector('section[data-route="home"]');
-  //   /*
-  //   Your code goes here! Uncomment the next line when you're ready to start!
-  //    */
-
-  //   getJSON('../data/earth-like-results.json')
-  //     .then((response) => {
-  //       addSearchHeader(response.query);
-  //       response.results.map((result) => {
-  //         getJSON(result).then(createPlanetThumb).catch(console.log);
-  //       });
-  //     })
-  // });
-
   window.addEventListener('WebComponentsReady', function() {
     home = document.querySelector('section[data-route="home"]');
-    /*
-    Your code goes here! Uncomment the next line when you're ready to start!
-     */
-
     getJSON('../data/earth-like-results.json')
       .then((response) => {
         addSearchHeader(response.query);
